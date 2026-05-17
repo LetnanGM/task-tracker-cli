@@ -1,4 +1,5 @@
 from typing import List, Dict
+from datetime import datetime, timezone
 import json
 import argparse
 
@@ -41,7 +42,7 @@ def write_task() -> bool:
     
     """
     with open(save_file, "w") as task:
-        json.dump(memory, task)
+        json.dump(memory, task, indent=4)
         
         return True
     
@@ -62,7 +63,12 @@ class task:
             return False, "Already added"
         
         count_task += 1
-        memory[count_task] = {"title": object, "status": "todo"}
+        memory[count_task] = {
+            "title": object, 
+            "status": "todo",
+            "createdAt": str(datetime.now(timezone.utc)),
+            "updateAt": ""
+        }
         write_task()
         
         return True,count_task
@@ -86,6 +92,8 @@ class task:
                 elif title:
                     print(f"[+] {task_id} changed status from {object['title']} -> {title}")
                     object["title"] = title
+                    
+                object["updateAt"] = datetime.now(timezone.utc)
                     
                 write_task()
                 return True
