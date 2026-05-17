@@ -60,5 +60,5 @@ here is the small docs about the command:
 - list : showing all of task, need `status` subargument, `status` must be `todo`, `progress`, `done` or `all`, after that, list will be filter all of project with status :D
 
 Task : https://roadmap.sh/projects/task-tracker
-Thanks roadmap.sh
+Thanks roadmap.sh<br>
 Happy Coding!
